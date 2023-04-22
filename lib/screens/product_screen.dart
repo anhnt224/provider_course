@@ -18,6 +18,7 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("BUILD");
     return Scaffold(
       appBar: AppBar(
         title: const Text('Danh sách sản phẩm'),
@@ -35,6 +36,7 @@ class ProductScreen extends StatelessWidget {
           Expanded(
             child: Consumer<ProductProvider>(
               builder: (context, value, child) {
+                print("DATA CHANGED");
                 // print(value);
                 final products = value.products;
                 return ListView.builder(

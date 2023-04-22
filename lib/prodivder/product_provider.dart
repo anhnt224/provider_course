@@ -8,7 +8,9 @@ class ProductProvider extends ChangeNotifier {
   List<Product> get products => List.from(_products);
 
   void add(Product product) {
+    print("ADD PRODUCT");
     _products.add(product);
+    print(_products.toString());
     notifyListeners();
   }
 

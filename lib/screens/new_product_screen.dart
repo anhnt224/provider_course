@@ -14,6 +14,17 @@ class NewProductScreen extends StatefulWidget {
 class _NewProductScreenState extends State<NewProductScreen> {
   late final TextEditingController _controller;
 
+  void _addProduct(String name) {
+    final product = Product(name: name, price: 10000);
+    final productProvider = context.read<ProductProvider>();
+    productProvider.add(product);
+    Navigator.of(context).pop();
+  }
+
+  void _navigateToPromo(BuildContext context) {
+    Navigator.pushNamed(context, "/promo");
+  }
+
   @override
   void initState() {
     _controller = TextEditingController();
@@ -42,12 +53,16 @@ class _NewProductScreenState extends State<NewProductScreen> {
             onPressed: () {
               final text = _controller.text;
               if (text.isNotEmpty) {
-                final product = Product(name: text, price: 10000);
-                context.read<ProductProvider>().add(product);
-                Navigator.of(context).pop();
+                _addProduct(text);
               }
             },
             child: const Text('Add'),
+          ),
+          TextButton(
+            onPressed: () {
+              _navigateToPromo(context);
+            },
+            child: const Text('PROMO -------------'),
           )
         ],
       ),
